@@ -6,14 +6,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Encriptador</title>
+	
 </head>
 <body>
 
 <form>
 	<textarea></textarea>
-	<button>Encriptar</button>
-	<button>Desencriptar</button>
+	<button id="encriptar">Encriptar</button>
+	<button id="desencriptar">Desencriptar</button>
 	<div>Espacio para texto</div>
 </form>
+
+<script type="text/javascript">
+
+
+
+		var texto = document.querySelector('textarea');
+		var btnEnc = document.querySelector("#encriptar");
+
+		function encripta() {
+			alert(texto.value);
+		}
+
+		btnEnc.onclick = encripta;
+
+
+
+</script>
+
 </body>
 </html>
