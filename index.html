@@ -10,26 +10,89 @@
 </head>
 <body>
 
-<form>
+
 	<textarea></textarea>
 	<button id="encriptar">Encriptar</button>
 	<button id="desencriptar">Desencriptar</button>
-	<div>Espacio para texto</div>
-</form>
+	<div id='espacio-texto'>Espacio para texto</div>
+
 
 <script type="text/javascript">
 
 
-
 		var texto = document.querySelector('textarea');
 		var btnEnc = document.querySelector("#encriptar");
+		var btnDes = document.querySelector("#desencriptar");
+		var espacio = document.querySelector('#espacio-texto');
 
+		/*---------------Encripta----------------*/
 		function encripta() {
-			alert(texto.value);
+			var cadena = new String(texto.value);
+			const text_split = cadena.split('');
+			var letras_procesadas = '';
+
+			for (var i = 0; i < text_split.length; i++) {
+				
+				switch (text_split[i]){
+					case 'a':
+						letras_procesadas += 'ai';
+					break;
+					case 'e':
+						letras_procesadas += 'enter';
+					break;
+					case 'i':
+						letras_procesadas += 'imes';
+					break;
+					case 'o':
+						letras_procesadas += 'ober';
+					break;
+					case 'u':
+						letras_procesadas += 'ufat';
+					break;
+					default:
+						letras_procesadas += text_split[i];
+
+				}				
+			}
+			espacio.innerHTML = letras_procesadas;
 		}
+		/*---------------Encripta----------------*/
+
+		/*--------------Desencripta--------------*/
+		function desencripta() {
+			var cadena = new String(texto.value);
+			const text_split = cadena.split('');
+			var letras_procesadas = '';
+			
+			for (var i = 0; i < text_split.length; i++) {
+				
+				switch (text_split[i]){
+					case 'ai':
+						letras_procesadas += 'a';
+					break;
+					case 'enter':
+						letras_procesadas += 'e';
+					break;
+					case 'imes':
+						letras_procesadas += 'i';
+					break;
+					case 'ober':
+						letras_procesadas += 'o';
+					break;
+					case 'ufat':
+						letras_procesadas += 'u';
+					break;
+					default:
+						letras_procesadas += text_split[i];
+
+				}				
+			}
+			espacio.innerHTML = letras_procesadas;
+		}
+		/*--------------Desencripta--------------*/
 
 		btnEnc.onclick = encripta;
-
+		btnDes.onclick = desencripta;
 
 
 </script>
