@@ -21,39 +21,40 @@
 
 
 		var texto = document.querySelector('textarea');
+		var espacio = document.querySelector('#espacio-texto');
+
 		var btnEnc = document.querySelector("#encriptar");
 		var btnDes = document.querySelector("#desencriptar");
-		var espacio = document.querySelector('#espacio-texto');
+		
+
 
 		/*---------------Encripta----------------*/
 		function encripta() {
 			var cadena = new String(texto.value);
-			const text_split = cadena.split('');
 			var letras_procesadas = '';
+			var txtEnc = '';
+			var regex = /a|e|i|o|u/g;
 
-			for (var i = 0; i < text_split.length; i++) {
+			var letras_procesadas = cadena.replace(regex, function(match){
+
+				if (match=='a') {
+					return 'ai';
+				}else if (match=='e') {
+					return 'enter';
+				}
+				else if (match=='i') {
+					return 'imes';
+				}
+				else if (match=='o') {
+					return 'ober';
+				}
+				else if (match=='u') {
+					return 'ufat';
+				}
 				
-				switch (text_split[i]){
-					case 'a':
-						letras_procesadas += 'ai';
-					break;
-					case 'e':
-						letras_procesadas += 'enter';
-					break;
-					case 'i':
-						letras_procesadas += 'imes';
-					break;
-					case 'o':
-						letras_procesadas += 'ober';
-					break;
-					case 'u':
-						letras_procesadas += 'ufat';
-					break;
-					default:
-						letras_procesadas += text_split[i];
-
-				}				
-			}
+				
+			});
+			
 			espacio.innerHTML = letras_procesadas;
 		}
 		/*---------------Encripta----------------*/
@@ -61,32 +62,30 @@
 		/*--------------Desencripta--------------*/
 		function desencripta() {
 			var cadena = new String(texto.value);
-			const text_split = cadena.split('');
 			var letras_procesadas = '';
-			
-			for (var i = 0; i < text_split.length; i++) {
-				
-				switch (text_split[i]){
-					case 'ai':
-						letras_procesadas += 'a';
-					break;
-					case 'enter':
-						letras_procesadas += 'e';
-					break;
-					case 'imes':
-						letras_procesadas += 'i';
-					break;
-					case 'ober':
-						letras_procesadas += 'o';
-					break;
-					case 'ufat':
-						letras_procesadas += 'u';
-					break;
-					default:
-						letras_procesadas += text_split[i];
+			var txtEnc = '';
+			var regex = /ai|enter|imes|ober|ufat/g;
 
-				}				
-			}
+			var letras_procesadas = cadena.replace(regex, function(match){
+
+				if (match=='ai') {
+					return 'a';
+				}else if (match=='enter') {
+					return 'e';
+				}
+				else if (match=='imes') {
+					return 'i';
+				}
+				else if (match=='ober') {
+					return 'o';
+				}
+				else if (match=='ufat') {
+					return 'u';
+				}
+				
+				
+			});
+			
 			espacio.innerHTML = letras_procesadas;
 		}
 		/*--------------Desencripta--------------*/
