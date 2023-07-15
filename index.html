@@ -8,12 +8,14 @@
 	<title>Encriptador</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<style type="text/css">
 
 			body{
 				background: #F3F5FC;
-				font-family: 'Montserrat', sans-serif;
+				font-family: 'Inter', sans-serif;
 
 			}
 			/*--------Contenedores y cards-----------*/
@@ -23,6 +25,7 @@
 				flex-wrap: wrap;
 				justify-content: center;
 				max-width: 1200px;
+				margin-left: 10px;
 			}			
 			.formulario{
 				width: 700px;
@@ -36,7 +39,7 @@
 				/*border: 1px solid black;		*/
 				flex-direction: column;	
 			}
-			#espacio-resultado{				
+			#espacio-resultado-container{				
 				width: 200px;
 				height: 500px;	
 				display: flex;
@@ -52,8 +55,10 @@
 				justify-content: center;
 				align-items: center;
 			}
+
 			#espacio-botones{
 				flex-direction: row;
+				align-content: center;
 			}
 			/*--------Contenedores y cards-----------*/
 
@@ -67,11 +72,13 @@
 			}				
 			#encriptar{
 				background-color: #0A3871;				
-				color:white;				
+				color:white;	
+				width: 40%;			
 			}
 			#desencriptar{				
 				background-color: #D8DFE8;
 				color:#0A3871;										
+				width: 40%;
 			}
 			#copiar{
 				width: 70%;
@@ -83,13 +90,27 @@
 				background: #F3F5FC;
 				border: #F3F5FC;
 				resize: none;
-				font-family: 'Montserrat', sans-serif;	
+				font-family: 'Interx', sans-serif;	
 				font-size: 32px;			
 				width: 100%;
-				height: 400px;			
+				height: 400px;	
+				color:#0A3871;		
 			}
-			
-			
+			/*-------Estilos de Texto---------*/
+			.info-i{
+				font-weight: bold;
+			}
+			/*-------Estilos de Texto---------*/
+
+			/*-----Ajuste responsive-------*/
+			@media screen and (max-width:480px){
+				#encriptar, #desencriptar{
+					width: 100%;
+					margin: 5px;
+				}
+			}
+
+			/*-----Ajuste responsive-------*/
 
 	</style>
 	
@@ -111,10 +132,12 @@
 					<button id="desencriptar">Desencriptar</button>
 				</div>
 			</div>
-			<div id="espacio-resultado">
-				<img width="186px" height="154px" src="images/muneco.png" >
-				<div class="info-i">Ningun mensaje fue encontrado</div>
-				</br>Ingrese el texto que desee encriptar o desencriptar
+			<div id="espacio-resultado-container">
+				<div id="espacio-resultado">
+					<img width="186px" height="154px" src="images/muneco.png" >
+					<div class="info-i">Ningun mensaje fue encontrado</div>
+					</br>Ingrese el texto que desee encriptar o desencriptar
+				</div>
 				</br><button id="copiar">Copiar</button>
 			</div>
 			
@@ -130,7 +153,8 @@
 
 		var btnEnc = document.querySelector("#encriptar");
 		var btnDes = document.querySelector("#desencriptar");
-		
+		var btnCop = document.querySelector("#copiar");
+		btnCop.style.display = "none";
 
 
 		/*---------------Encripta----------------*/
@@ -160,6 +184,7 @@
 			});
 			
 			espacio.innerHTML = letras_procesadas;
+			btnCop.style.display = "block";
 		}
 		/*---------------Encripta----------------*/
 
@@ -190,11 +215,33 @@
 			});
 			
 			espacio.innerHTML = letras_procesadas;
+			btnCop.style.display = "block";
 		}
 		/*--------------Desencripta--------------*/
 
+		/*--------------Copiar-----------------*/
+		function copiar(){
+			
+			var textoCopiado = document.querySelector("#espacio-resultado").textContent;
+			if(navigator.clipboard){
+				navigator.clipboard.writeText(textoCopiado)
+				.then(() => {
+					console.log("Exito");
+				})
+				.catch(() => {
+					console.log("Falló");
+				});
+			}else{
+				aler("Funcion de copiado invalida por el navegador")
+			}
+		}
+
+		/*--------------Copiar-----------------*/
+
+
 		btnEnc.onclick = encripta;
 		btnDes.onclick = desencripta;
+		btnCop.onclick = copiar;
 
 
 </script>
