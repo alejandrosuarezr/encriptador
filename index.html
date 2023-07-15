@@ -6,22 +6,127 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Encriptador</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+	<style type="text/css">
+
+			body{
+				background: #F3F5FC;
+				font-family: 'Montserrat', sans-serif;
+
+			}
+			/*--------Contenedores y cards-----------*/
+			.contenedor{
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				justify-content: center;
+				max-width: 1200px;
+			}			
+			.formulario{
+				width: 700px;
+				height: 500px;
+				display: flex;
+
+				flex-grow: 2;
+				flex-shrink: 0;
+				flex-basis: 400px;
+
+				/*border: 1px solid black;		*/
+				flex-direction: column;	
+			}
+			#espacio-resultado{				
+				width: 200px;
+				height: 500px;	
+				display: flex;
+
+				flex-grow: 1;
+				flex-shrink: 0;
+				flex-basis: 300px;
+
+				background-color: white;
+				border-radius: 15px;
+				/*border: 1px solid black;*/
+				flex-direction: column;	
+				justify-content: center;
+				align-items: center;
+			}
+			#espacio-botones{
+				flex-direction: row;
+			}
+			/*--------Contenedores y cards-----------*/
+
+			/*------------Botones-----------*/
+			button{
+				width: 328px;
+				height: 40px;
+				border-radius: 24px;
+				padding: 14px;
+				border: 1px solid #0A3871;
+			}				
+			#encriptar{
+				background-color: #0A3871;				
+				color:white;				
+			}
+			#desencriptar{				
+				background-color: #D8DFE8;
+				color:#0A3871;										
+			}
+			#copiar{
+				width: 70%;
+			}
+			/*------------Botones-----------*/
+
+			
+			textarea{
+				background: #F3F5FC;
+				border: #F3F5FC;
+				resize: none;
+				font-family: 'Montserrat', sans-serif;	
+				font-size: 32px;			
+				width: 100%;
+				height: 400px;			
+			}
+			
+			
+
+	</style>
 	
 </head>
 <body>
 
 
-	<textarea></textarea>
-	<button id="encriptar">Encriptar</button>
-	<button id="desencriptar">Desencriptar</button>
-	<div id='espacio-texto'>Espacio para texto</div>
+	<header>
+		<div><img src="images/logo.png"></div>
+	</header>	
+
+	<main>
+		<div class="contenedor">
+			<div class="formulario">
+				<textarea placeholder="Ingrese el texto aqui"></textarea><br>
+				<div class="info-min">Solo letras minusculas sin acentos</div>
+				<div class="espacio-botones">
+					<button id="encriptar">Encriptar</button>
+					<button id="desencriptar">Desencriptar</button>
+				</div>
+			</div>
+			<div id="espacio-resultado">
+				<img width="186px" height="154px" src="images/muneco.png" >
+				<div class="info-i">Ningun mensaje fue encontrado</div>
+				</br>Ingrese el texto que desee encriptar o desencriptar
+				</br><button id="copiar">Copiar</button>
+			</div>
+			
+		</div>
+	</main>
 
 
 <script type="text/javascript">
 
 
 		var texto = document.querySelector('textarea');
-		var espacio = document.querySelector('#espacio-texto');
+		var espacio = document.querySelector('#espacio-resultado');
 
 		var btnEnc = document.querySelector("#encriptar");
 		var btnDes = document.querySelector("#desencriptar");
@@ -32,7 +137,6 @@
 		function encripta() {
 			var cadena = new String(texto.value);
 			var letras_procesadas = '';
-			var txtEnc = '';
 			var regex = /a|e|i|o|u/g;
 
 			var letras_procesadas = cadena.replace(regex, function(match){
@@ -63,7 +167,6 @@
 		function desencripta() {
 			var cadena = new String(texto.value);
 			var letras_procesadas = '';
-			var txtEnc = '';
 			var regex = /ai|enter|imes|ober|ufat/g;
 
 			var letras_procesadas = cadena.replace(regex, function(match){
